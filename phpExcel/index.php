@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>Pilot Program</title>
+		<link rel="icon" href="favicon.ico" type="image/gif"> 
 	</head>
 <body>
 
