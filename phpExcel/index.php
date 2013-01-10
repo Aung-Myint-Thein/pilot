@@ -5,6 +5,10 @@
 <body>
 
 <h1>Test Driving MySqlExcelBuilder</h1>
+
+
+<p>I used the tutorial and files from <a href="http://net.tutsplus.com/tutorials/php/how-to-generate-a-complete-excel-spreadsheet-from-mysql/">here</a>.</p>
+
 <?php 
 require_once('MySqlExcelBuilder.class.php');
 
