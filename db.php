@@ -7,7 +7,7 @@ Hello, Happy New Year 2013.
 
 
 <?php
-$con = mysql_connect("localhost","root","");
+$con = mysql_connect("localhost","root","insead2012");
 if (!$con)
   {
   die('Could not connect: ' . mysql_error());
