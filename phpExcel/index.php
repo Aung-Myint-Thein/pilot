@@ -15,7 +15,7 @@ require_once('MySqlExcelBuilder.class.php');
 
 // Intialize the object with the database variables
 $database = 'test';
-$user='root';
+$user='insead';
 $pwd='insead2012';
 $mysql_xls = new MySqlExcelBuilder($database,$user,$pwd);
 
