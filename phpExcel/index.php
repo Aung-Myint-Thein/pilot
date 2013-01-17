@@ -23,7 +23,7 @@ $mysql_xls = new MySqlExcelBuilder($database,$user,$pwd);
 $sql_statement = 'select * from atmmachines;';
 
 
-$sql_statement2 = 'select * from country;';
+$sql_statement2 = 'select * from internet;';
 
 
 
