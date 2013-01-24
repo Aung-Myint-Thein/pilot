@@ -53,11 +53,12 @@ $phpExcel->setActiveSheetIndex(0); // Set the sheet back to the first page.
 
 // Write the spreadsheet file...
 $objWriter = PHPExcel_IOFactory::createWriter($phpExcel, 'Excel5'); // 'Excel5' is the oldest format and can be read by old programs.
-$fname = "TestFile.xls";
-$objWriter->save($fname);
+$fname = "DataFile_".date("Y-m-d His").".xls";
+
+$objWriter->save("./downloads/".$fname);
 
 // Make it available for download.
-echo "<a href=\"$fname\">Download $fname</a>";
+echo "Download <a href=\"./downloads/$fname\">Here</a>";
 
 
 ?>
