@@ -5,7 +5,7 @@
 	</head>
 <body>
 
-<h1>Test Driving MySqlExcelBuilder</h1>
+<h1>Hello!</h1>
 
 
 <p>I used the tutorial and files from <a href="http://net.tutsplus.com/tutorials/php/how-to-generate-a-complete-excel-spreadsheet-from-mysql/">here</a>.</p>
@@ -61,9 +61,9 @@ echo "<a href=\"$fname\">Download $fname</a>";
 
 
 ?>
-
-You choose <?php echo $_POST["db"]; ?>.
-
+<p>
+You choose <?php echo $_POST["db"]; ?> database.
+</p>
 
 
 </body>
