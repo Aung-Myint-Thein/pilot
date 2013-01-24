@@ -18,6 +18,7 @@
 Hello, Happy New Year 2013.
 
 
+<form action="test.php" method="post">
 <?php
 $con = mysql_connect("localhost","insead","insead2012");
 if (!$con)
@@ -31,6 +32,7 @@ $result = mysql_query("SELECT * FROM data_tables;");
 
 echo "<table border='1'>
 <tr>
+<th></th>
 <th>Indicator Name</th>
 <th>Number of countries coverage</th>
 <th>Years of coverage</th>
@@ -41,6 +43,7 @@ echo "<table border='1'>
 while($row = mysql_fetch_array($result))
   {
   echo "<tr>";
+  echo "<td><input class=\"radio\" type=\"radio\" name=\"table\" value=\"". $row['table_name']."\" /></td>";
   echo "<td>" . $row['name'] . "</td>";
   echo "<td>" . $row['countries'] . "</td>";
   echo "<td>" . $row['year_start'] . " - " . $row['year_end'] . "</td>";
@@ -52,6 +55,9 @@ echo "</table>";
 
 mysql_close($con);
 ?>
+
+<input type="submit" value="Choose">
+</form>
 
 
 </body>

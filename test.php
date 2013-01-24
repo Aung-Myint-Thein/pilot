@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Pilot Program</title>
+		<title>Pilot : Result</title>
 		<link rel="icon" href="favicon.ico" type="image/gif"> 
 	</head>
 <body>
@@ -19,8 +19,10 @@ $user='insead';
 $pwd='insead2012';
 $mysql_xls = new MySqlExcelBuilder($database,$user,$pwd);
 
+set_time_limit(0);
+
 // Setup the SQL Statements
-$sql_statement = 'select * from atmmachines;';
+$sql_statement = 'select * from '.$_POST["table"].';';
 
 
 $sql_statement2 = 'select * from internet;';
@@ -28,29 +30,29 @@ $sql_statement2 = 'select * from internet;';
 
 
 // Add the SQL statements to the spread sheet
-$mysql_xls->add_page('ATM Machines',$sql_statement,'','B',2);
-$mysql_xls->add_page('Country',$sql_statement2,'','B',2);
+$mysql_xls->add_page($_POST["table"],$sql_statement,'','B',2);
+$mysql_xls->add_page('Internet Users',$sql_statement2,'','B',2);
 
 // Get the spreadsheet after the SQL statements are built...
 $phpExcel = $mysql_xls->getExcel(); // This needs to come after all the pages have been added.
-
+/*
 $phpExcel->setActiveSheetIndex(0); // Set the sheet to the first page.
 // Do some addtional formatting using PHPExcel
 $sheet = $phpExcel->getActiveSheet();
 $date = date('Y-m-d');
 $cellKey = "A1"; 
-$sheet->setCellValue($cellKey,"Gold Mugs Sold as Of $date");
+$sheet->setCellValue($cellKey,"Data downloaded on $date");
 $style = $sheet->getStyle($cellKey);                              
 $style->getFont()->setBold(true);
 
 $phpExcel->setActiveSheetIndex(1); // Set the sheet to the second page.
 $sheet = $phpExcel->getActiveSheet(); 
-$sheet->setCellValue($cellKey,"Tea Sold as Of $date");
+$sheet->setCellValue($cellKey,"Data downloaded on $date");
 $style = $sheet->getStyle($cellKey);                              
 $style->getFont()->setBold(true);
 
 $phpExcel->setActiveSheetIndex(0); // Set the sheet back to the first page.
-
+*/
 // Write the spreadsheet file...
 $objWriter = PHPExcel_IOFactory::createWriter($phpExcel, 'Excel5'); // 'Excel5' is the oldest format and can be read by old programs.
 $fname = "DataFile_".date("Y-m-d His").".xls";
@@ -63,7 +65,7 @@ echo "Download <a href=\"./downloads/$fname\">Here</a>";
 
 ?>
 <p>
-You choose <?php echo $_POST["db"]; ?> database.
+You choose <?php echo $_POST["table"]; ?> database.
 </p>
 
 
