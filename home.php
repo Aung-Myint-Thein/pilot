@@ -73,17 +73,51 @@
         </ul>
         <h3 class="muted">INSEAD eLab Pilot Program</h3>
       </div>
+	
+      <form action="test.php" method="post">
+<?php
+$con = mysql_connect("localhost","insead","insead2012");
+if (!$con)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
 
-      <hr>
+mysql_select_db("test", $con);
 
-      <div class="jumbotron">
-        <h1>Super awesome marketing speak!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <a class="btn btn-large btn-success" href="#">Sign up today</a>
-      </div>
+$result = mysql_query("SELECT * FROM data_tables;");
 
-      <hr>
-      <hr>
+echo "<table class=\"table table-hover\">
+<thead>
+<tr>
+<th></th>
+<th>Indicator Name</th>
+<th>Number of countries coverage</th>
+<th>Years of coverage</th>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead></tbody>";
+
+while($row = mysql_fetch_array($result))
+  {
+  echo "<tr>";
+  
+  echo "<td><label class=\"checkbox\"><input type=\"checkbox\" name=\"table[]\" value=\"". $row['table_name']."\"></label></td>";
+  
+  //echo "<td><input class=\"radio\" type=\"radio\" name=\"table\" value=\"". $row['table_name']."\" /></td>";
+  echo "<td>" . $row['name'] . "</td>";
+  echo "<td>" . $row['countries'] . "</td>";
+  echo "<td>" . $row['year_start'] . " - " . $row['year_end'] . "</td>";
+  echo "<td>" . $row['source'] . "</td>";
+  echo "<td>" . $row['description'] . "</td>";
+  echo "</tr>";
+  }
+echo "</tbody></table>";
+
+mysql_close($con);
+?>
+<button class="btn btn-primary" type="submit">Choose</button>
+</form>
 
       <div class="footer">
         <p>&copy; INSEAD eLab 2013</p>
@@ -94,7 +128,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>  
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

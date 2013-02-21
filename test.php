@@ -24,17 +24,30 @@ $mysql_xls = new MySqlExcelBuilder($database,$user,$pwd);
 
 set_time_limit(0);
 
+$choices = $_POST["table"];
+if(empty($choices)){
+	echo ("You didn't choose any data source.");
+}
+else{
+	$from_db = "";
+	for($i=0;$i<count($choices);$i++){
+		if($i == count($choices)-1){
+			$from_db .= $choices[$i]. ' ';
+		}else{
+			$from_db .= $choices[$i]. ', ';	
+		}
+	}
+}
+
+echo $from_db;
+
 // Setup the SQL Statements
-$sql_statement = 'select * from '.$_POST["table"].';';
-
-
-$sql_statement2 = 'select * from internet;';
+$sql_statement = 'select * from atmmachines;';
 
 $after_sql = time();
 
 // Add the SQL statements to the spread sheet
-$mysql_xls->add_page($_POST["table"],$sql_statement,'','B',2);
-$mysql_xls->add_page('Internet Users',$sql_statement2,'','B',2);
+$mysql_xls->add_page('Data',$sql_statement,'','B',2);
 
 $after_add_page = time();
 
@@ -54,10 +67,9 @@ $after_save = time();
 // Make it available for download.
 echo "Download <a href=\"./downloads/$fname\">Here</a>";
 
-
 ?>
 <p>
-You choose <?php echo $_POST["table"]; ?> database.
+You choose <?php //echo $_POST["table"]; ?> database.
 </p>
 
 Start to after sql = <?php echo $after_sql-$start_time; ?>
