@@ -118,26 +118,39 @@
 		  }
 		  else{
 			$from_db = "";
+			$from_to_print = "";
+			$where = "";
+			
 			if(count($choices)==1) {
 			  $from_db .= $choices[0];
+			  $from_to_print .= $choices[0];
 			} else {
 			  for($i=0;$i<count($choices);$i++){
 				if($i == count($choices)-1){
-				  $from_db .= ' and ' .$choices[$i]. ' ';
+				  $from_to_print .= ' and ' .$choices[$i]. ' ';
+				  $from_db .= $choices[$i]. ' ';
+				  $where .= $choices[$i]. '.year ';
 				}else{
 				  $from_db .= $choices[$i]. ', ';
+				  $from_to_print .= $choices[$i]. ', ';
+				  $where .= $choices[$i]. '.year = ';
 				}
 			  }
 			}
 		  }
 		  ?>
 		  
-		  <p>You choose <?php echo $from_db; ?> databases.</p>
+		  <p>You choose <?php echo $from_to_print; ?> databases.</p>
 		  
 		  <?php
 		  
 		  // Setup the SQL Statements
-		  $sql_statement = 'select * from atmmachines;';
+		  if(count($choices)==1) {
+			$sql_statement = 'select * from '.$from_db.';';
+		  }else{
+			//this statement is not working yet.
+			$sql_statement = 'select * from '.$from_db.' where '.$where.';';
+		  }
 		  
 		  $after_sql = microtime();
 		  
