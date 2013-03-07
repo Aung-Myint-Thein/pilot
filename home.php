@@ -11,11 +11,42 @@
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
+      
+	  /* Sticky footer styles
+      -------------------------------------------------- */
+      html,
       body {
-        padding-top: 20px;
-        padding-bottom: 40px;
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
       }
 
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+	  /* end of Sticky footer styles
+      -------------------------------------------------- */
+	  
       /* Custom container */
       .container-narrow {
         margin: 0 auto;
@@ -51,21 +82,20 @@
       
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
    
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
 
   <body>
-
+	<div id="wrap">
     <div class="container-narrow">
-
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
@@ -73,57 +103,56 @@
         </ul>
         <h3 class="muted">INSEAD eLab Pilot Program</h3>
       </div>
-	
-      <form action="test.php" method="post">
-<?php
-$con = mysql_connect("localhost","insead","insead2012");
-if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }
-
-mysql_select_db("test", $con);
-
-$result = mysql_query("SELECT * FROM data_tables;");
-
-echo "<table class=\"table table-hover\">
-<thead>
-<tr>
-<th></th>
-<th>Indicator Name</th>
-<th>Number of countries coverage</th>
-<th>Years of coverage</th>
-<th>Source</th>
-<th>Description</th>
-</tr>
-</thead></tbody>";
-
-while($row = mysql_fetch_array($result))
-  {
-  echo "<tr>";
-  
-  echo "<td><label class=\"checkbox\"><input type=\"checkbox\" name=\"table[]\" value=\"". $row['table_name']."\"></label></td>";
-  
-  //echo "<td><input class=\"radio\" type=\"radio\" name=\"table\" value=\"". $row['table_name']."\" /></td>";
-  echo "<td>" . $row['name'] . "</td>";
-  echo "<td>" . $row['countries'] . "</td>";
-  echo "<td>" . $row['year_start'] . " - " . $row['year_end'] . "</td>";
-  echo "<td>" . $row['source'] . "</td>";
-  echo "<td>" . $row['description'] . "</td>";
-  echo "</tr>";
-  }
-echo "</tbody></table>";
-
-mysql_close($con);
-?>
-<button class="btn btn-primary" type="submit">Choose</button>
-</form>
-
-      <div class="footer">
-        <p>&copy; INSEAD eLab 2013</p>
-      </div>
-
+	  
+      <form action="result.php" method="post">
+	  <?php
+		$con = mysql_connect("localhost","insead","insead2012");
+		if (!$con)
+		  {
+		  die('Could not connect: ' . mysql_error());
+		  }
+		
+		mysql_select_db("test", $con);
+		
+		$result = mysql_query("SELECT * FROM data_tables;");
+		
+		echo "<table class=\"table table-hover\">
+		<thead>
+		<tr>
+		<th></th>
+		<th>Indicator Name</th>
+		<th>Number of countries coverage</th>
+		<th>Years of coverage</th>
+		<th>Source</th>
+		<th>Description</th>
+		</tr>
+		</thead></tbody>";
+		
+		while($row = mysql_fetch_array($result))
+		  {
+		  echo "<tr>";
+		  echo "<td><label class=\"checkbox\"><input type=\"checkbox\" name=\"table[]\" value=\"". $row['table_name']."\"></label></td>";
+		  echo "<td>" . $row['name'] . "</td>";
+		  echo "<td>" . $row['countries'] . "</td>";
+		  echo "<td>" . $row['year_start'] . " - " . $row['year_end'] . "</td>";
+		  echo "<td>" . $row['source'] . "</td>";
+		  echo "<td>" . $row['description'] . "</td>";
+		  echo "</tr>";
+		  }
+		echo "</tbody></table>";
+		
+		mysql_close($con);
+	  ?>
+	  <button class="btn btn-primary" type="submit">Choose</button>
+	  </form>
     </div> <!-- /container -->
+	</div> <!-- /wrap -->
+	
+	<div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; INSEAD eLab 2013</p>
+      </div>
+    </div>
 
     <!-- Le javascript
     ================================================== -->

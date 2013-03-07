@@ -11,11 +11,42 @@
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
+      
+	  /* Sticky footer styles
+      -------------------------------------------------- */
+      html,
       body {
-        padding-top: 20px;
-        padding-bottom: 40px;
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
       }
 
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+	  /* end of Sticky footer styles
+      -------------------------------------------------- */
+	  
       /* Custom container */
       .container-narrow {
         margin: 0 auto;
@@ -57,15 +88,14 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
 
   <body>
-
+	<div id="wrap">
     <div class="container-narrow">
-
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="home.php">Home</a></li>
@@ -80,45 +110,43 @@
         <h1>Pilot Program!</h1>
         <p class="lead">This will let you choose which kind of data, which year and time series you may want to download, and will give excel sheet. Moreover, as a beta feature, you can choose to get the latest data from each source. Try it out! and give feedback.</p>        
       </div>
-
-      <hr>
-
-      <div class="row-fluid marketing">
-        <div class="span6">
-	  <form>
-	    <fieldset>
-	      <h4>Name</h4>
-	      <input type="text" placeholder="your name">
-	
-	      <h4>Email</h4>
-	      <input type="text" placeholder="your email">
-		
-	      <h4>Feedback</h4>
-	      <textarea rows="3" placeholder="feedback"></textarea>
-	      <br/>
-	      <button type="submit" class="btn">Submit</button>
-	    </fieldset>
-	  </form>
 	  
-        </div>
-	
-	<div class="span6">
-          <h4>Contact:</h4>
-          <p>Email : <a href="mailto:myintthein.aung@insead.edu">myintthein.aung@insead.edu</a></p>
-      </div>
-	
-      </div>
-      
-      
-      
       <hr>
-      
-      <div class="footer">
-        <p>&copy; INSEAD eLab 2013</p>
+		
+      <div class="row-fluid marketing">
+		<div class="span6">
+		  <form>
+			<fieldset>
+			  <h4>Name</h4>
+			  <input type="text" placeholder="your name">
+		
+			  <h4>Email</h4>
+			  <input type="text" placeholder="your email">
+			
+			  <h4>Feedback</h4>
+			  <textarea rows="3" placeholder="feedback"></textarea>
+			  <br/>
+			  <button type="submit" class="btn">Submit</button>
+			</fieldset>
+		</form>		
+	  </div>
+	
+	  <div class="span6">
+        <h4>Contact:</h4>
+        <p>Email : <a href="mailto:myintthein.aung@insead.edu">myintthein.aung@insead.edu</a></p>
       </div>
-
+    </div>
+     
+    <hr>  
     </div> <!-- /container -->
-
+	</div>
+	
+	<div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; INSEAD eLab 2013</p>
+      </div>
+    </div>
+	
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
