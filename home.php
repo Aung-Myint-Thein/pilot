@@ -104,6 +104,8 @@
         <h3 class="muted">INSEAD eLab Pilot Program</h3>
       </div>
 	  
+	  <hr>
+	  
       <form action="result.php" method="post">
 	  <?php
 		$con = mysql_connect("localhost","insead","insead2012");
@@ -144,7 +146,7 @@
 		mysql_close($con);
 	  ?>
 	  <button class="btn btn-primary" type="submit">Choose</button>
-	  </form>
+	  </form>	  
     </div> <!-- /container -->
 	</div> <!-- /wrap -->
 	

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 	<meta charset="utf-8">
-	<title>Pilot : Home</title>
+	<title>Pilot : Result</title>
 	<link rel="icon" href="favicon.ico" type="image/gif">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -95,11 +95,12 @@
 		</ul>
 		<h3 class="muted">INSEAD eLab Pilot Program</h3>
 	  </div>
-		<p>I used the tutorial and files from <a href="http://net.tutsplus.com/tutorials/php/how-to-generate-a-complete-excel-spreadsheet-from-mysql/">here</a>.</p>
+	  
+	  <hr>
 		
 		<?php
 		  
-		  $start_time = time();
+		  $start_time = microtime();
 		  
 		  require_once('MySqlExcelBuilder.class.php');
 		  
@@ -129,16 +130,21 @@
 			  }
 			}
 		  }
+		  ?>
+		  
+		  <p>You choose <?php echo $from_db; ?> databases.</p>
+		  
+		  <?php
 		  
 		  // Setup the SQL Statements
 		  $sql_statement = 'select * from atmmachines;';
 		  
-		  $after_sql = time();
+		  $after_sql = microtime();
 		  
 		  // Add the SQL statements to the spread sheet
 		  $mysql_xls->add_page('Data',$sql_statement,'','B',2);
 		  
-		  $after_add_page = time();
+		  $after_add_page = microtime();
 		  
 		  // Get the spreadsheet after the SQL statements are built...
 		  $phpExcel = $mysql_xls->getExcel(); // This needs to come after all the pages have been added.
@@ -147,28 +153,31 @@
 		  $objWriter = PHPExcel_IOFactory::createWriter($phpExcel, 'Excel5'); // 'Excel5' is the oldest format and can be read by old programs.
 		  $fname = "DataFile_".date("Y-m-d His").".xls";
 		  
-		  $after_write = time();
+		  $after_write = microtime();
 		  
 		  $objWriter->save("./downloads/".$fname);
 		  
-		  $after_save = time();
-		  
 		  // Make it available for download.
-		  echo "Download <a href=\"./downloads/$fname\">here</a>";
+		  echo "<p><h5>Download your excel <a href=\"./downloads/$fname\">here</a></h5></p>";
 		  
 		?>
-		<p>
-		You choose <?php echo $from_db; ?> database.
-		</p>
 		
 		<hr>
 		
 		<h4>Performance</h4>
 		
-		Start to after sql = <?php echo $after_sql-$start_time; ?>
-		after sql to after add page = <?php echo $after_add_page-$after_sql; ?>
-		after add page to after write = <?php echo $after_write - $after_add_page; ?>
-		after write to after save = <?php echo $after_save - $after_write; ?>
+		Executing SQL statement : <?php echo number_format(($after_sql-$start_time)*1000, 2, '.', ''); ?> milliseconds
+		<br/>
+		Adding sheets to Excel : <?php echo number_format(($after_add_page-$after_sql)*1000, 2, '.',''); ?> milliseconds
+		<br/>
+		Writing to file : <?php echo number_format(($after_write - $after_add_page)*1000, 2, '.', ''); ?> milliseconds
+		
+		<hr>
+		
+		<h5>Credit:</h5>
+		
+		<p>I used the tutorial from <a href="http://net.tutsplus.com/">net tuts+</a> and link for full tutorial is available <a href="http://net.tutsplus.com/tutorials/php/how-to-generate-a-complete-excel-spreadsheet-from-mysql/">here</a>.</p>
+		
 	</div> <!-- /container -->
 	</div> <!-- /wrap -->
 	<div id="footer">
@@ -176,8 +185,6 @@
 		<p class="muted credit">&copy; INSEAD eLab 2013</p>
 	  </div>
 	</div>
-
-
 
 	<!-- Le javascript
 	================================================== -->
