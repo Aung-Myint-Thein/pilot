@@ -113,6 +113,9 @@
 		  set_time_limit(0);
 		  
 		  $choices = $_POST["table"];
+		  $start_year = $_POST["start_year"];
+		  $end_year = $_POST["end_year"];
+		  
 		  if(empty($choices)) {
 			echo ("You didn't choose any data source.");
 		  }

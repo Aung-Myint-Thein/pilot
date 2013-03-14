@@ -143,10 +143,43 @@
 		  echo "<td>" . $row['description'] . "</td>";
 		  echo "</tr>";
 		  }
+		?>
+		<tr>
+		<td></td>
+		<td colspan="2">	  
+		  <div class="input-prepend">
+			<span class="add-on">&nbsp;Start Year</span>
+			<select class="span1" name="start_year">
+			<option value="">---</option>
+			<?php
+			  for($year = 1960; $year <= 2013; $year++){
+				echo "<option>".$year."</option>";
+			  }
+			?>
+			</select>  
+		  </div>
+		</td>
+		<td colspan="2">
+		  <div class="input-prepend">
+			<span class="add-on">&nbsp;&nbsp;End Year</span>
+			<select class="span1" name="end_year">
+			<option value="">---</option>
+			<?php
+			  for($year = 1960; $year <= 2013; $year++){
+				echo "<option>".$year."</option>";
+			  }
+			?>
+			</select>  
+		</div>
+		</td>
+		<td></td>
+		</tr>
+	  <?php
 		echo "</tbody></table>";
 		
 		mysql_close($con);
 	  ?>
+		
 	  <button class="btn btn-primary" type="submit">Choose</button>
 	  </form>	  
     </div> <!-- /container -->
