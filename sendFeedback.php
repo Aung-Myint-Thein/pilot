@@ -111,7 +111,11 @@
       </div>
 	  
       <hr>
-		
+      
+      <h5>Links</h5>
+      To download more data : <a href="home.php">Home</a> <br/>
+      To provide more feedback : <a href="about.php">About</a> <br/>
+	  
       <?php
 		$con = mysql_connect("localhost","insead","insead2012");
 		if (!$con)
