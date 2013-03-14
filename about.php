@@ -115,16 +115,16 @@
 		
       <div class="row-fluid marketing">
 		<div class="span6">
-		  <form>
+		  <form action="sendFeedback.php" method="post">
 			<fieldset>
 			  <h4>Name</h4>
-			  <input type="text" placeholder="your name">
+			  <input type="text" name="name" placeholder="your name">
 		
 			  <h4>Email</h4>
-			  <input type="text" placeholder="your email">
+			  <input type="text" name="email" placeholder="your email">
 			
 			  <h4>Feedback</h4>
-			  <textarea rows="3" placeholder="feedback"></textarea>
+			  <textarea rows="3" name="feedback" placeholder="feedback"></textarea>
 			  <br/>
 			  <button type="submit" class="btn">Submit</button>
 			</fieldset>

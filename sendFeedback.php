@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-	<title>Pilot : Home</title>
+	<title>Pilot : About</title>
 	<link rel="icon" href="favicon.ico" type="image/gif"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -78,13 +78,13 @@
         margin-top: 28px;
       }
     </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-      
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-   
+
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
@@ -98,18 +98,21 @@
     <div class="container-narrow">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
+          <li><a href="home.php">Home</a></li>
           <li><a href="about.php">About</a></li>
         </ul>
         <h3 class="muted">INSEAD eLab Pilot Program</h3>
       </div>
+
+      <hr>
+
+      <div class="jumbotron">
+        <h3>Thank for providing feedback!</h3>
+      </div>
 	  
-	  <hr>
-	  Choose which data you would like to download. You can choose more than one data tables.
-	  <hr>
-	  
-      <form action="result.php" method="post">
-	  <?php
+      <hr>
+		
+      <?php
 		$con = mysql_connect("localhost","insead","insead2012");
 		if (!$con)
 		  {
@@ -118,50 +121,24 @@
 		
 		mysql_select_db("test", $con);
 		
-		$result = mysql_query("SELECT * FROM data_tables;");
-		
-		echo "<table class=\"table table-hover\">
-		<thead>
-		<tr>
-		<th></th>
-		<th>Indicator Name</th>
-		<th>Number of countries coverage</th>
-		<th>Years of coverage</th>
-		<th>Source</th>
-		<th>Description</th>
-		</tr>
-		</thead></tbody>";
-		
-		while($row = mysql_fetch_array($result))
-		  {
-		  echo "<tr>";
-		  echo "<td><label class=\"checkbox\"><input type=\"checkbox\" name=\"table[]\" value=\"". $row['table_name']."\"></label></td>";
-		  echo "<td>" . $row['name'] . "</td>";
-		  echo "<td>" . $row['countries'] . "</td>";
-		  echo "<td>" . $row['year_start'] . " - " . $row['year_end'] . "</td>";
-		  echo "<td>" . $row['source'] . "</td>";
-		  echo "<td>" . $row['description'] . "</td>";
-		  echo "</tr>";
-		  }
-		echo "</tbody></table>";
+		$result = mysql_query("INSERT INTO feedback VALUES (,".$_POST["name"].",".$_POST["email"].",".$_POST["feedback"].",);");
 		
 		mysql_close($con);
 	  ?>
-	  <button class="btn btn-primary" type="submit">Choose</button>
-	  </form>	  
+	
     </div> <!-- /container -->
-	</div> <!-- /wrap -->
+	</div>
 	
 	<div id="footer">
       <div class="container">
         <p class="muted credit">&copy; INSEAD eLab 2013</p>
       </div>
     </div>
-
+	
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>  
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

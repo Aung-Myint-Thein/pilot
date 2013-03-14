@@ -91,7 +91,7 @@
 	  <div class="masthead">
 		<ul class="nav nav-pills pull-right">
 		  <li><a href="home.php">Home</a></li>
-		  <li><a href="about.html">About</a></li>
+		  <li><a href="about.php">About</a></li>
 		</ul>
 		<h3 class="muted">INSEAD eLab Pilot Program</h3>
 	  </div>
@@ -100,7 +100,7 @@
 		
 		<?php
 		  
-		  $start_time = microtime();
+		  $start_time = time();
 		  
 		  require_once('MySqlExcelBuilder.class.php');
 		  
@@ -152,12 +152,12 @@
 			$sql_statement = 'select * from '.$from_db.' where '.$where.';';
 		  }
 		  
-		  $after_sql = microtime();
+		  $after_sql = time();
 		  
 		  // Add the SQL statements to the spread sheet
 		  $mysql_xls->add_page('Data',$sql_statement,'','B',2);
 		  
-		  $after_add_page = microtime();
+		  $after_add_page = time();
 		  
 		  // Get the spreadsheet after the SQL statements are built...
 		  $phpExcel = $mysql_xls->getExcel(); // This needs to come after all the pages have been added.
@@ -166,9 +166,11 @@
 		  $objWriter = PHPExcel_IOFactory::createWriter($phpExcel, 'Excel5'); // 'Excel5' is the oldest format and can be read by old programs.
 		  $fname = "DataFile_".date("Y-m-d His").".xls";
 		  
-		  $after_write = microtime();
+		  $after_write = time();
 		  
 		  $objWriter->save("./downloads/".$fname);
+		  
+		  $after_save = time();
 		  
 		  // Make it available for download.
 		  echo "<p><h5>Download your excel <a href=\"./downloads/$fname\">here</a></h5></p>";
@@ -179,11 +181,13 @@
 		
 		<h4>Performance</h4>
 		
-		Executing SQL statement : <?php echo number_format(($after_sql-$start_time)*1000, 2, '.', ''); ?> milliseconds
+		Executing SQL statement : <?php echo number_format(($after_sql-$start_time), 0, '.', ''); ?> seconds
 		<br/>
-		Adding sheets to Excel : <?php echo number_format(($after_add_page-$after_sql)*1000, 2, '.',''); ?> milliseconds
+		Adding sheets to Excel : <?php echo number_format(($after_add_page-$after_sql), 0, '.',''); ?> seconds
 		<br/>
-		Writing to file : <?php echo number_format(($after_write - $after_add_page)*1000, 2, '.', ''); ?> milliseconds
+		Writing to file : <?php echo number_format(($after_write - $after_add_page), 0, '.', ''); ?> seconds
+		<br/>
+		Saving to file : <?php echo number_format(($after_save - $after_write),0, '.', ''); ?> seconds
 		
 		<hr>
 		
