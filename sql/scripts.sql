@@ -64,3 +64,55 @@ select * from (Select * from country
 				left outer join atmmachines 
 				on country.ISO3 = atmmachines.ISO3) as 2
 left outer join shadoweconomies on 2.ISO3 = shadoweconomies.ISO3 ;
+
+
+SELECT @row := @row + 1 as row from (SELECT @row := 0) r ;
+
+//getting country with year.
+select * from Country join year;
+
+//getting country with year in a range
+SELECT * FROM Country JOIN year where year > 2000 and year <=2010;
+
+//getting all countries with year in a range with atmmachines and with null for empty rows.
+
+select Country.Country, Country.ISO3, Country.year, atmmachines.atmmachines from 
+(SELECT * FROM Country JOIN year where year > 2000 and year <=2010) Country
+left outer join atmmachines on Country.ISO3 = atmmachines.ISO3 and Country.year = atmmachines.year;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
