@@ -118,11 +118,10 @@
 		  {
 		  die('Could not connect: ' . mysql_error());
 		  }
-		
 		mysql_select_db("test", $con);
 		
-		$result = mysql_query("INSERT INTO feedback VALUES (,".$_POST["name"].",".$_POST["email"].",".$_POST["feedback"].",);");
-		
+		$result = mysql_query("INSERT INTO feedback (name,email,feedback) VALUES ('".$_POST["name"]."','".$_POST["email"]."','".$_POST["feedback"]."');");
+        
 		mysql_close($con);
 	  ?>
 	
