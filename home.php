@@ -105,7 +105,7 @@
       </div>
 	  
 	  <hr>
-	  Choose which data you would like to download. You can choose more than one data tables.
+	  Choose which data you would like to download (can be more than one option), then choose starting year and ending year for the data and you are good to go.
 	  <hr>
 	  
       <form action="result.php" method="post">
@@ -125,8 +125,8 @@
 		<tr>
 		<th></th>
 		<th>Indicator Name</th>
-		<th>Number of countries coverage</th>
-		<th>Years of coverage</th>
+		<th>Number of countries</th>
+		<th>Available years</th>
 		<th>Source</th>
 		<th>Description</th>
 		</tr>
@@ -148,7 +148,7 @@
 		<td></td>
 		<td colspan="2">	  
 		  <div class="input-prepend">
-			<span class="add-on">&nbsp;Start Year</span>
+			<span class="add-on">&nbsp;Starting Year</span>
 			<select class="span1" name="start_year">
 			<option value="">---</option>
 			<?php
@@ -161,7 +161,7 @@
 		</td>
 		<td colspan="2">
 		  <div class="input-prepend">
-			<span class="add-on">&nbsp;&nbsp;End Year</span>
+			<span class="add-on">&nbsp;&nbsp;Ending Year</span>
 			<select class="span1" name="end_year">
 			<option value="">---</option>
 			<?php

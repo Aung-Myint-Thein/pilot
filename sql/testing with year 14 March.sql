@@ -32,3 +32,21 @@ left outer join atmmachines on Country.ISO3 = atmmachines.ISO3 and Country.year 
 left outer join internet on Country.ISO3 = internet.ISO3 and Country.year = internet.year
 left outer join shadoweconomies on Country.ISO3 = shadoweconomies.ISO3 and Country.year = shadoweconomies.year
 ;
+
+/* testing with variables */
+SELECT
+  Country.Country,
+  Country.ISO3,
+  Country.year,
+  table1.table1,
+  table2.table2,
+  table3.table3
+FROM 
+(SELECT * FROM Country JOIN year WHERE year >= 2000 AND year <=2010) Country
+LEFT OUTER JOIN atmmachines
+  ON Country.ISO3 = atmmachines.ISO3 AND Country.year = atmmachines.year
+LEFT OUTER JOIN internet
+  ON Country.ISO3 = internet.ISO3 AND Country.year = internet.year
+LEFT OUTER JOIN shadoweconomies
+  ON Country.ISO3 = shadoweconomies.ISO3 AND Country.year = shadoweconomies.year
+;
