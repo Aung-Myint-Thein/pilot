@@ -59,3 +59,8 @@ select * from internet JOIN shadoweconomies on internet.year = shadoweconomies.y
 
 select * from country left outer join atmmachines on country.ISO3 = atmmachines.ISO3 left outer join shadoweconomies on country.ISO3 = shadoweconomies.ISO3;
 
+
+select * from (Select * from country 
+				left outer join atmmachines 
+				on country.ISO3 = atmmachines.ISO3) as 2
+left outer join shadoweconomies on 2.ISO3 = shadoweconomies.ISO3 ;
