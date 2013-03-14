@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2013 at 08:45 AM
+-- Generation Time: Mar 14, 2013 at 10:48 AM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -27,8 +27,6 @@ USE `test`;
 
 --
 -- Table structure for table `atmmachines`
---
--- Creation: Jan 03, 2013 at 06:48 AM
 --
 
 DROP TABLE IF EXISTS `atmmachines`;
@@ -671,8 +669,6 @@ INSERT INTO `atmmachines` (`ISO3`, `year`, `ATMMachines`) VALUES
 --
 -- Table structure for table `country`
 --
--- Creation: Feb 21, 2013 at 05:28 AM
---
 
 DROP TABLE IF EXISTS `country`;
 CREATE TABLE IF NOT EXISTS `country` (
@@ -963,8 +959,6 @@ INSERT INTO `country` (`COUNTRY`, `ISO3`) VALUES
 --
 -- Table structure for table `data_tables`
 --
--- Creation: Jan 24, 2013 at 03:04 AM
---
 
 DROP TABLE IF EXISTS `data_tables`;
 CREATE TABLE IF NOT EXISTS `data_tables` (
@@ -993,9 +987,34 @@ INSERT INTO `data_tables` (`name`, `table_name`, `countries`, `year_start`, `yea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gdpconstant2000`
+-- Table structure for table `feedback`
 --
--- Creation: Jan 24, 2013 at 03:35 AM
+
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE IF NOT EXISTS `feedback` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `feedback` varchar(5000) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `name`, `email`, `feedback`, `timestamp`) VALUES
+(1, 'Aung', 'then', 'hahaha', '2013-03-14 03:57:01'),
+(2, 'dca', 'cad', 'cad', '2013-03-14 04:14:03'),
+(3, 'cda', 'cdacasdcad', 'FEEDBACK!!', '2013-03-14 04:15:00'),
+(4, 'd', 'cd', 'cd', '2013-03-14 04:18:05'),
+(5, 'v', 'c', 'cd', '2013-03-14 04:20:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gdpconstant2000`
 --
 
 DROP TABLE IF EXISTS `gdpconstant2000`;
@@ -10472,8 +10491,6 @@ INSERT INTO `gdpconstant2000` (`ISO3`, `year`, `ny_gdp_mktp_kd`) VALUES
 --
 -- Table structure for table `gdppercapitaconstant2000`
 --
--- Creation: Jan 24, 2013 at 03:36 AM
---
 
 DROP TABLE IF EXISTS `gdppercapitaconstant2000`;
 CREATE TABLE IF NOT EXISTS `gdppercapitaconstant2000` (
@@ -19944,8 +19961,6 @@ INSERT INTO `gdppercapitaconstant2000` (`ISO3`, `year`, `ny_gdp_pcap_kd`) VALUES
 --
 -- Table structure for table `internet`
 --
--- Creation: Jan 17, 2013 at 08:09 AM
---
 
 DROP TABLE IF EXISTS `internet`;
 CREATE TABLE IF NOT EXISTS `internet` (
@@ -20176,8 +20191,6 @@ INSERT INTO `internet` (`ISO3`, `PercentInternetUser`, `year`) VALUES
 
 --
 -- Table structure for table `population`
---
--- Creation: Jan 24, 2013 at 03:21 AM
 --
 
 DROP TABLE IF EXISTS `population`;
@@ -37649,8 +37662,6 @@ INSERT INTO `population` (`ISO3`, `year`, `Population`) VALUES
 --
 -- Table structure for table `shadoweconomies`
 --
--- Creation: Jan 24, 2013 at 03:05 AM
---
 
 DROP TABLE IF EXISTS `shadoweconomies`;
 CREATE TABLE IF NOT EXISTS `shadoweconomies` (
@@ -39093,6 +39104,77 @@ INSERT INTO `shadoweconomies` (`ISO3`, `year`, `ShadowEconomies`) VALUES
 ('ZWE', 2005, 62),
 ('ZWE', 2006, 62.3),
 ('ZWE', 2007, 62.7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `year`
+--
+
+DROP TABLE IF EXISTS `year`;
+CREATE TABLE IF NOT EXISTS `year` (
+  `year` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `year`
+--
+
+INSERT INTO `year` (`year`) VALUES
+(1960),
+(1961),
+(1962),
+(1963),
+(1964),
+(1965),
+(1966),
+(1967),
+(1968),
+(1969),
+(1970),
+(1971),
+(1972),
+(1973),
+(1974),
+(1975),
+(1976),
+(1977),
+(1978),
+(1979),
+(1980),
+(1981),
+(1982),
+(1983),
+(1984),
+(1985),
+(1986),
+(1987),
+(1988),
+(1989),
+(1990),
+(1991),
+(1992),
+(1993),
+(1994),
+(1995),
+(1996),
+(1997),
+(1998),
+(1999),
+(2000),
+(2001),
+(2002),
+(2003),
+(2004),
+(2005),
+(2006),
+(2007),
+(2008),
+(2009),
+(2010),
+(2011),
+(2012),
+(2013);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
