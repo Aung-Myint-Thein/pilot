@@ -80,6 +80,8 @@ select Country.Country, Country.ISO3, Country.year, atmmachines.atmmachines from
 (SELECT * FROM Country JOIN year where year > 2000 and year <=2010) Country
 left outer join atmmachines on Country.ISO3 = atmmachines.ISO3 and Country.year = atmmachines.year;
 
+http://www.yourwebskills.com/mysqljoin2.php
+
 
 
 
