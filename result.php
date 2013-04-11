@@ -133,11 +133,11 @@
 		  }
 		  ?>
 		  
-		  <p>You choose <?php echo $from_to_print; ?> databases.</p>
+		  <p>You choose <?php echo $from_to_print. ' ' . $start_year . ' ' . $end_year; ?> databases.</p>
 		  
 		  <?php
 		  //constructing sql statement
-		  $sql_statement = 'SELECT Country.Country, Country.ISO3, Country.year'.$select_columns.' FROM (SELECT * FROM Country JOIN year WHERE year >= 2000 AND year <=2010) Country'.$from_db.';';
+		  $sql_statement = 'SELECT Country.Country, Country.ISO3, Country.year'.$select_columns.' FROM (SELECT * FROM Country JOIN year WHERE year >= '.$start_year.' AND year <= '.$end_year.') Country'.$from_db.';';
 		  
 		  echo $sql_statement;
 		  $after_sql = time();
