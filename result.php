@@ -130,25 +130,25 @@
 			for($i=0;$i<count($choices);$i++){
 			  $select_columns .= ",".$choices[$i];
 			  $from_db .= " LEFT OUTER JOIN ".$choices[$i]." ON Country.ISO3 = ".$choices[$i].".ISO3 AND Country.year = ".$choices[$i].".year ";			  
-			  $from_to_print .= ' and ' . $choices[$i];				
+			  $from_to_print .= $choices[$i] . ' ';				
 			}
 			
-			if($start_year > 0 && $end_year > 0){
-			  $duration .= 'year >= '.$start_year.' AND year <= '.$end_year;
-			} else {
+			if($start_year > 0 && $end_year > 0){ } else {			
 			  //default time series is from 2003 to 2013
-			  $duration .= 'year >= 2003 AND year <= 2013';
+			  $start_year = 2003;
+			  $end_year = 2013;			
 			}
+			
+			$duration .= 'year >= '.$start_year.' AND year <= '.$end_year;
 		  }
 		  ?>
 		  
-		  <p>You choose <?php echo $from_to_print. ' ' . $start_year . ' ' . $end_year; ?> databases.</p>
+		  <p>You choose <?php echo $from_to_print. 'databases from ' . $start_year . ' to ' . $end_year .'.'; ?></p>
 		  
 		  <?php
 		  //constructing sql statement
 		  $sql_statement = 'SELECT Country.Country, Country.ISO3, Country.year'.$select_columns.' FROM (SELECT * FROM Country JOIN year WHERE '.$duration.') Country'.$from_db.';';
 		  
-		  echo $sql_statement;
 		  $after_sql = time();
 		  
 		  // Add the SQL statements to the spread sheet
@@ -185,6 +185,13 @@
 		Writing to file : <?php echo number_format(($after_write - $after_add_page), 0, '.', ''); ?> seconds
 		<br/>
 		Saving to file : <?php echo number_format(($after_save - $after_write),0, '.', ''); ?> seconds
+		<br/>
+		
+		<hr>
+		
+		<h4>For Dev.</h4>
+		
+		<p class="muted"><?php echo $sql_statement; ?></p>
 		
 		<hr>
 		
