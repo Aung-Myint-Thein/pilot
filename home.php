@@ -159,7 +159,7 @@
 			</select>  
 		  </div>
 		</td>
-		<td colspan="2">
+		<td colspan="3">
 		  <div class="input-prepend">
 			<span class="add-on">&nbsp;&nbsp;Ending Year</span>
 			<select class="span1" name="end_year">
@@ -169,10 +169,10 @@
 				echo "<option>".$year."</option>";
 			  }
 			?>
-			</select>  
-		</div>
+			</select>  		  
+		  </div>		  
+		  <p class="muted">*Default will be from 2000 to 2013.</p>		  
 		</td>
-		<td></td>
 		</tr>
 	  <?php
 		echo "</tbody></table>";
@@ -180,7 +180,7 @@
 		mysql_close($con);
 	  ?>
 		
-	  <button class="btn btn-primary" type="submit">Choose</button>
+	  <button class="btn btn-primary" type="submit">Download</button>
 	  </form>	  
     </div> <!-- /container -->
 	</div> <!-- /wrap -->

@@ -110,26 +110,35 @@
 		  $pwd='insead2012';
 		  $mysql_xls = new MySqlExcelBuilder($database,$user,$pwd);
 		  
+		  //set time limit to wait for the query
 		  set_time_limit(0);
 		  
 		  $choices = $_POST["table"];
 		  $start_year = $_POST["start_year"];
-		  $end_year = $_POST["end_year"];
+		  $end_year = $_POST["end_year"];	
 		  
 		  if(empty($choices)) {
 			echo ("You didn't choose any data source.");
-		  }
-		  else{
+		  } else {
+			//constructing pieces of SQL statements
 			$from_db = "";
 			$from_to_print = "";
 			$where = "";
 			$select_columns = "";
+			$duration = "";
 			
 			for($i=0;$i<count($choices);$i++){
 			  $select_columns .= ",".$choices[$i];
 			  $from_db .= " LEFT OUTER JOIN ".$choices[$i]." ON Country.ISO3 = ".$choices[$i].".ISO3 AND Country.year = ".$choices[$i].".year ";			  
 			  $from_to_print .= ' and ' . $choices[$i];				
-			}			
+			}
+			
+			if($start_year > 0 && $end_year > 0){
+			  $duration .= 'year >= '.$start_year.' AND year <= '.$end_year;
+			} else {
+			  //default time series is from 2003 to 2013
+			  $duration .= 'year >= 2003 AND year <= 2013';
+			}
 		  }
 		  ?>
 		  
@@ -137,7 +146,7 @@
 		  
 		  <?php
 		  //constructing sql statement
-		  $sql_statement = 'SELECT Country.Country, Country.ISO3, Country.year'.$select_columns.' FROM (SELECT * FROM Country JOIN year WHERE year >= '.$start_year.' AND year <= '.$end_year.') Country'.$from_db.';';
+		  $sql_statement = 'SELECT Country.Country, Country.ISO3, Country.year'.$select_columns.' FROM (SELECT * FROM Country JOIN year WHERE '.$duration.') Country'.$from_db.';';
 		  
 		  echo $sql_statement;
 		  $after_sql = time();
