@@ -125,46 +125,20 @@
 			$where = "";
 			$select_columns = "";
 			
-			/*if(count($choices)==1) {			  
-			  $select_columns .= ",".$choices[0];
-			  $from_db .= " LEFT OUTER JOIN ".$choices[0]." ON Country.ISO3 = ".$choices[0].".ISO3 AND Country.year = ".$choices[0].".year ";
-			  
-			  $from_to_print .= $choices[0];
-			} else { */
-			  for($i=0;$i<count($choices);$i++){
-				/*if($i == count($choices)-1){
-				  $from_to_print .= ' and ' .$choices[$i]. ' ';
-				  $from_db .= $choices[$i]. ' ';
-				  $where .= $choices[$i]. '.year ';
-				}else{
-				  $from_db .= $choices[$i]. ', ';
-				  $from_to_print .= $choices[$i]. ', ';
-				  $where .= $choices[$i]. '.year = ';
-				}*/
-				
-				$select_columns .= ",".$choices[$i];
-				$from_db .= " LEFT OUTER JOIN ".$choices[$i]." ON Country.ISO3 = ".$choices[$i].".ISO3 AND Country.year = ".$choices[$i].".year ";			  
-				$from_to_print .= ' and ' . $choices[$i];
-				
-			  }
-			//}
+			for($i=0;$i<count($choices);$i++){
+			  $select_columns .= ",".$choices[$i];
+			  $from_db .= " LEFT OUTER JOIN ".$choices[$i]." ON Country.ISO3 = ".$choices[$i].".ISO3 AND Country.year = ".$choices[$i].".year ";			  
+			  $from_to_print .= ' and ' . $choices[$i];				
+			}			
 		  }
 		  ?>
 		  
 		  <p>You choose <?php echo $from_to_print; ?> databases.</p>
 		  
 		  <?php
+		  //constructing sql statement
+		  $sql_statement = 'SELECT Country.Country, Country.ISO3, Country.year'.$select_columns.' FROM (SELECT * FROM Country JOIN year WHERE year >= 2000 AND year <=2010) Country'.$from_db.';';
 		  
-		  // Setup the SQL Statements
-		  //if(count($choices)>1) {
-			//$sql_statement = 'select * from '.$from_db.';';
-			
-			$sql_statement = 'SELECT Country.Country, Country.ISO3, Country.year'.$select_columns.' FROM (SELECT * FROM Country JOIN year WHERE year >= 2000 AND year <=2010) Country'.$from_db.';';
-			
-		  //}else{
-		  //this statement is not working yet.
-		  //	$sql_statement = 'select * from '.$from_db.' where '.$where.';';
-		  //}
 		  echo $sql_statement;
 		  $after_sql = time();
 		  
