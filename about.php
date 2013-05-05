@@ -133,6 +133,9 @@
 	
 	  <div class="span6">
         <h4>Contact:</h4>
+		<h5>Aung Myint Thein</h5>
+		<p>Research Programmer</p>
+		<p>eLab | Asia Pacific</p>
         <p>Email : <a href="mailto:myintthein.aung@insead.edu">myintthein.aung@insead.edu</a></p>
       </div>
     </div>
